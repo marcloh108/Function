@@ -1,28 +1,35 @@
 #include<stdio.h>
+#define MAX 100
 
-long toBin(int);
 
+int n;
 int main()
 {
-    long bno;
-    int dno;
 
-    printf(" Input any decimal number : ");
-    scanf("%d",&dno);
-    bno = toBin(dno);
-    printf("\n The Binary value is : %ld\n\n",bno);
+    int arr1[MAX], mxelem,i;
+    printf("Input the number of elements to be stored in the array :");
+    scanf("%d", &n);
 
+    printf("Input %d elements in the array :\n");
+    for(i=0;i<n; i++)
+    {
+        printf(" element - %d : ", i);
+        scanf("%d", &arr1[i]);
+    }
+    mxelem=findMaxElem(arr1);
+
+    printf("The largest element in the array is : %d\n\n", mxelem);
     return 0;
 }
-long toBin(int dno)
+int findMaxElem(int arr1[])
 {
-    long bno=0,remainder,f=1;
-    while(dno != 0)
+    int i=1,mxelem;
+    mxelem=arr1[0];
+    while(i<n)
     {
-         remainder = dno % 2;
-         bno = bno + remainder * f;
-         f = f * 10;
-         dno = dno / 2;
+        if(mxelem<arr1[i])
+            mxelem=arr1[i];
+        i++;
     }
-    return bno;
+    return mxelem;
 }
