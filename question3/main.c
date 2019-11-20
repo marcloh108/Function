@@ -1,48 +1,23 @@
 #include<stdio.h>
 #define MAX 100
 
-int checkArmstrong(int n1);
 int checkPerfect(int n1);
+void PerfectNumbers(int stLimit, int enLimit);
 
 int main()
 {
-    int n1;
-    printf("Input any number: ");
-    scanf("%d", &n1);
+    int stLimit, enLimit;
+    printf("Input lowest search limit of perfect numbers : ");
+    scanf("%d", &stLimit);
+    printf("Input highest search limit of perfect numbers : ");
+    scanf("%d", &enLimit);
 
-    if(checkArmstrong(n1))
-    {
-        printf("The %d is an Armstrong number.\n", n1);
-    }
-    else
-    {
-        printf("The %d is not an Armstrong number.\n", n1);
-    }
-
-    if(checkPerfect(n1))
-    {
-        printf("The %d is a Perfect number.\n", n1);
-    }
-    else
-    {
-        printf("The %d is not a Perfect number.\n", n1);
-    }
+    printf("\n The perfect numbers between %d to %d are : \n", stLimit, enLimit);
+    PerfectNumbers(stLimit, enLimit);
+    printf("\n\n");
     return 0;
 }
 
-int checkArmstrong(int n1)
-{
-    int ld, sum, num;
-    sum = 0;
-    num = n1;
-    while(num!=0)
-    {
-        ld = num % 10;
-        sum += ld * ld * ld;
-        num = num/10;
-    }
-    return(n1 == sum);
-}
 int checkPerfect(int n1)
 {
     int i, sum, num;
@@ -55,5 +30,25 @@ int checkPerfect(int n1)
             sum += i;
         }
     }
-    return (n1 == sum);
+
+    if(sum == n1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+void PerfectNumbers(int stLimit, int enLimit)
+{
+    while(stLimit <= enLimit)
+    {
+        if(checkPerfect(stLimit))
+        {
+            printf(" %d ", stLimit);
+        }
+        stLimit++;
+    }
 }
