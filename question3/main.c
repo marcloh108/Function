@@ -1,35 +1,59 @@
 #include<stdio.h>
 #define MAX 100
 
+int checkArmstrong(int n1);
+int checkPerfect(int n1);
 
-int n;
 int main()
 {
+    int n1;
+    printf("Input any number: ");
+    scanf("%d", &n1);
 
-    int arr1[MAX], mxelem,i;
-    printf("Input the number of elements to be stored in the array :");
-    scanf("%d", &n);
-
-    printf("Input %d elements in the array :\n");
-    for(i=0;i<n; i++)
+    if(checkArmstrong(n1))
     {
-        printf(" element - %d : ", i);
-        scanf("%d", &arr1[i]);
+        printf("The %d is an Armstrong number.\n", n1);
     }
-    mxelem=findMaxElem(arr1);
+    else
+    {
+        printf("The %d is not an Armstrong number.\n", n1);
+    }
 
-    printf("The largest element in the array is : %d\n\n", mxelem);
+    if(checkPerfect(n1))
+    {
+        printf("The %d is a Perfect number.\n", n1);
+    }
+    else
+    {
+        printf("The %d is not a Perfect number.\n", n1);
+    }
     return 0;
 }
-int findMaxElem(int arr1[])
+
+int checkArmstrong(int n1)
 {
-    int i=1,mxelem;
-    mxelem=arr1[0];
-    while(i<n)
+    int ld, sum, num;
+    sum = 0;
+    num = n1;
+    while(num!=0)
     {
-        if(mxelem<arr1[i])
-            mxelem=arr1[i];
-        i++;
+        ld = num % 10;
+        sum += ld * ld * ld;
+        num = num/10;
     }
-    return mxelem;
+    return(n1 == sum);
+}
+int checkPerfect(int n1)
+{
+    int i, sum, num;
+    sum = 0;
+    num = n1;
+    for(i=1;i<num;i++)
+    {
+        if(num%i == 0)
+        {
+            sum += i;
+        }
+    }
+    return (n1 == sum);
 }
